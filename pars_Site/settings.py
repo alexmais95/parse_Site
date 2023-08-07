@@ -1,3 +1,5 @@
+
+
 url = 'https://transport.kr.ua'
 
 headers = {
@@ -6,4 +8,5 @@ headers = {
 }
 
 copy_page = 'index.html'
-find_element = 'nav-link'
+find_element = ''
+replase = [' ', '\n', '<td>', '</td>']
