@@ -1,6 +1,6 @@
 
 
-url = 'https://transport.kr.ua'
+url = 'https://transport.kr.ua/bus/1'
 
 headers = {
     'Accept': '*/*',
@@ -8,5 +8,5 @@ headers = {
 }
 
 copy_page = 'index.html'
-find_element = ''
+file_search = 'all_category.json'
 replase = [' ', '\n', '<td>', '</td>']
