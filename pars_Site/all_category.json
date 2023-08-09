@@ -1,0 +1,8 @@
+{
+    "автобус": "https://transport.kr.ua",
+    "маршрутка": "https://transport.kr.ua/minibus",
+    "трамвай": "https://transport.kr.ua/tram",
+    "тролейбус": "https://transport.kr.ua/trolley",
+    "швидкісний": "https://transport.kr.ua/subway",
+    "потяг": "https://transport.kr.ua/train"
+}

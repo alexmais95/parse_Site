@@ -76,4 +76,6 @@ def search(replase, file_search):
                     )
         count+=1
 
-search(replase, file_search)
+
+if __name__ == '__main__':
+    search(replase, file_search)
