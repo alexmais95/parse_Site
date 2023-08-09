@@ -3,11 +3,10 @@ import lxml
 from bs4 import BeautifulSoup
 from settings import *
 import json
-import re
 import csv
 from classmethods import *
-import random
-import os
+
+
 
 
 def search(replase, file_search):
