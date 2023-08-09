@@ -5,7 +5,7 @@ from settings import *
 import json
 import re
 import csv
-from function import *
+from classmethods import *
 import random
 
 
@@ -16,40 +16,9 @@ def copy_html(url):
     with open('index.html', 'w', encoding='utf-8') as file:
             file.write(src)
 
-
-# open copy_html_page
-def open_html_page_insoup(page):
-    with open(page, encoding='utf-8') as file:
-        src = file.read()
-
-    soup = BeautifulSoup(src, 'lxml')
-    return soup
-
-def serch_item(search, replase):
-    link_dict = {}
-    for item in search:
-        item_text = item.text
-        item_linc = item.get("href")
-        for replese in item_text:
-            replace_element = replase
-            for rep in replace_element:
-                if rep in replese:
-                    item_text = item_text.replace(rep, '')
-        link_dict[item_text] = item_linc
-    return link_dict
-
-def make_json_file(link ,replase):
-
-    copy_page = copy_html(link)
-    soup = open_html_page_insoup(copy_page)
-
-    text_href = soup.find(class_='row m-0 transport-type row-cols-3').find_all('a')
-    search = serch_item(text_href, replase)
-
-    with open(f'json_file/{link}.json', 'w') as file:
-        json.dump(search, file, indent=4, ensure_ascii=False)
-
-
+page = 'index.html'
+json_c = Open()
+json_c.make_json_file(page, replase)
 def search(replase, file_search):
     with open(file_search) as file:
         page = json.load(file)
@@ -87,10 +56,11 @@ def search(replase, file_search):
 
             # find title
             text_href = soup.find(class_='table').find_all('th')
-
+            
             try:
                 str_1 = text_href[0].text
-                str_2 = text_href[1].text
+
+
             except IndexError:
                 continue
             # find time
@@ -106,7 +76,7 @@ def search(replase, file_search):
                 time_1.append(item)
 
             time_2 = []
-            time_2.append(str_2)
+            time_2.append(str_1)
             for i in time_b[1:23:2]:
                 time_2.append(i)
 
@@ -133,4 +103,4 @@ def search(replase, file_search):
                     )
         count+=1
 
-search(replase, file_search)
+#search(replase, file_search)
