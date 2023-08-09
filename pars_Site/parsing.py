@@ -7,46 +7,19 @@ import re
 import csv
 from classmethods import *
 import random
+import os
 
 
-# copy html_page
-def copy_html(url):
-    reg = requests.get(url)
-    src = reg.text
-    with open('index.html', 'w', encoding='utf-8') as file:
-            file.write(src)
-
-page = 'index.html'
-json_c = Open()
-json_c.make_json_file(page, replase)
 def search(replase, file_search):
     with open(file_search) as file:
         page = json.load(file)
     count = 0
+    json_c = Open()
     for text, href in page.items():
 
-        src = requests.get(href, headers=headers)
-        soup = BeautifulSoup(src.content, 'lxml')
+        json_c.make_json_file(href, replase, count)
 
-        # put your requests in text_href.
-        text_href = soup.find(class_='mt-3 row m-0 transport-table').find_all('a')
-
-        link_dict = {}
-        for item in text_href:
-            item_text = item.text
-            item_linc = item.get("href")
-
-            for replese in item_text:
-                replace_element = replase
-                for rep in replace_element:
-                    if rep in replese:
-                        item_text = item_text.replace(rep, '')
-            link_dict[item_text] = item_linc
-
-        with open(f'json_file/{item_text} paig {count}.json', 'w') as file:
-            json.dump(link_dict, file, indent=4, ensure_ascii=False)
-
-        with open(f'json_file/{item_text} paig {count}.json') as file:
+        with open(f'json_file/{count}.json') as file:
             page = json.load(file)
 
         for text, href in page.items():
@@ -83,7 +56,7 @@ def search(replase, file_search):
             for item in time_1:
                 w = item
 
-                with open(f'csv_file/{item_text} {count}.csv', 'a', encoding='utf-8') as file:
+                with open(f'csv_file/{count}.csv', 'a', encoding='utf-8') as file:
                     file_w = csv.writer(file)
                     file_w.writerow(
                         (
@@ -93,7 +66,7 @@ def search(replase, file_search):
                     )
             for item in time_2:
                 a = item
-                with open(f'/csv_file{item_text} {count}.csv', 'a', encoding='utf-8') as file:
+                with open(f'csv_file/{count}.csv', 'a', encoding='utf-8') as file:
                     file_w = csv.writer(file)
                     file_w.writerow(
                         (
@@ -103,4 +76,4 @@ def search(replase, file_search):
                     )
         count+=1
 
-#search(replase, file_search)
+search(replase, file_search)
